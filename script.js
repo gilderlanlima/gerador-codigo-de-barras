@@ -327,14 +327,9 @@ async function gerarPDF() {
     doc.line(10, pageHeight - 15, pageWidth - 10, pageHeight - 15);
     doc.text(footerText, pageWidth / 2, pageHeight - 10, { align: "center" });
 
-    // Nome do arquivo vindo do input
     let pdfName = document.getElementById("pdf-name").value.trim();
-    if (!pdfName) {
-      pdfName = "codigos_barras_code39";
-    }
-    if (!pdfName.toLowerCase().endsWith(".pdf")) {
-      pdfName += ".pdf";
-    }
+    if (!pdfName) pdfName = "codigos_barras_code39";
+    if (!pdfName.toLowerCase().endsWith(".pdf")) pdfName += ".pdf";
 
     doc.save(pdfName);
 
@@ -404,13 +399,23 @@ window.addEventListener("DOMContentLoaded", function () {
     .getElementById("generate-preview")
     .addEventListener("click", (e) => {
       e.preventDefault();
-      gerarPreview();
+
+      // Alerta estilo "Nyan Cat"
       Swal.fire({
-        icon: "info",
-        title: "Pré-visualização atualizada",
-        timer: 1000,
+        title: "Gerando pré-visualização!",
+        text: "Ideia no Bolso está preparando seus códigos de barras.",
+        width: 600,
+        padding: "2.5em",
+        color: "#ffffff",
+        background:
+          "#1d1b52 url('https://media.giphy.com/media/sIIhZliB2McAo/giphy.gif') center/cover no-repeat",
+        backdrop:
+          "rgba(0,0,0,0.6) url('https://media.giphy.com/media/sIIhZliB2McAo/giphy.gif') center top / 200px no-repeat",
+        timer: 1500,
         showConfirmButton: false
       });
+
+      gerarPreview();
     });
 
   document
