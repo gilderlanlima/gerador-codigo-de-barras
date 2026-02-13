@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #1f2933;
+  background: #f3f7fb;
+}
+
+/* Top bar com título centralizado */
+.topbar {
+  background: linear-gradient(90deg, #00c6ff 0%, #0072ff 100%);
+  padding: 12px 10px;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.app-title {
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Container principal */
+.main-box {
+  max-width: 1100px;
+  margin: 20px auto 70px auto;
+  background: #ffffff;
+  padding: 20px 24px 26px 24px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.09);
+}
+
+h2 {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+/* Formulário: aproveita classes Bootstrap, só pequenos ajustes */
+.form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.form-control-sm,
+.form-select-sm {
+  font-size: 12px;
+}
+
+/* Área de pré-visualização */
+#preview-area {
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  min-height: 120px;
+  background: #f8fafc;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 8px;
+}
+
+.label-box {
+  border: 1px dashed #94a3b8;
+  padding: 6px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.label-box svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Botões N I U: usa Bootstrap, só reforça active */
+.style-btn.active {
+  color: #ffffff !important;
+}
+
+/* Rodapé fixo */
+footer {
+  text-align: center;
+  font-size: 11px;
+  padding: 6px 10px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #64748b;
+}
