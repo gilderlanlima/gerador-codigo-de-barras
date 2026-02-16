@@ -1,6 +1,26 @@
 // Conversão mm ↔ px (96 DPI)
 const MM_TO_PX = 96 / 25.4;
 
+// Map de formatos suportados em mm (largura x altura, retrato)
+function getPdfPageSize() {
+  const formato = document.getElementById("pdf-format").value;
+
+  // Valores em mm (ISO 216) e Super A3 330 x 440 mm [web:132][web:137]
+  switch (formato) {
+    case "A3":
+      return { width: 297, height: 420 };
+    case "SUPER_A3":
+      return { width: 330, height: 440 }; // 33 x 44 cm
+    case "A2":
+      return { width: 420, height: 594 };
+    case "A1":
+      return { width: 594, height: 841 };
+    case "A4":
+    default:
+      return { width: 210, height: 297 };
+  }
+}
+
 // Utilitário: gera array de códigos de um número ao outro com padding automático.
 function gerarListaCodigos(inicioStr, fimStr) {
   const maxLen = Math.max(inicioStr.length, fimStr.length);
@@ -145,7 +165,7 @@ function svgToBase64(svgElement) {
   });
 }
 
-// Gera PDF A4 com as etiquetas
+// Gera PDF com as etiquetas, no formato escolhido
 async function gerarPDF() {
   try {
     const btn = document.getElementById("generate-pdf");
@@ -183,15 +203,18 @@ async function gerarPDF() {
       return;
     }
 
+    // Dimensões da página de acordo com o formato escolhido
+    const pageSize = getPdfPageSize();
+    const pageWidth = pageSize.width;
+    const pageHeight = pageSize.height;
+
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({
       orientation: "portrait",
       unit: "mm",
-      format: "a4"
+      format: [pageWidth, pageHeight] // formato custom em mm [web:23][web:131]
     });
 
-    const pageWidth = 210;
-    const pageHeight = 297;
     const marginLeft = 10;
     const marginTop = 10;
     const marginBottom = 25;
@@ -310,7 +333,7 @@ async function gerarPDF() {
           align: "center"
         });
 
-        doc.addPage();
+        doc.addPage([pageWidth, pageHeight], "portrait");
         posX = marginLeft;
         posY = marginTop;
         colIndex = 0;
@@ -400,7 +423,6 @@ window.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", (e) => {
       e.preventDefault();
 
-      // Alerta estilo "Nyan Cat"
       Swal.fire({
         title: "Gerando pré-visualização!",
         text: "Ideia no Bolso está preparando seus códigos de barras.",

@@ -23,7 +23,7 @@
 
   <!-- JsBarcode apenas para CODE39 -->
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/barcodes/JsBarcode.code39.min.js"></script>
-  <!-- jsPDF para gerar PDF A4 -->
+  <!-- jsPDF para gerar PDF -->
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <!-- SweetAlert2 JS -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -49,17 +49,17 @@
 
       <div class="col-6 col-md-2">
         <label for="range-end" class="form-label">Número final</label>
-        <input type="text" id="range-end" class="form-control form-control-sm" value="010">
+        <input type="text" id="range-end" class="form-control form-control-sm" value="100">
       </div>
 
       <div class="col-6 col-md-2">
         <label for="barcode-height" class="form-label">Altura código (mm)</label>
-        <input type="number" id="barcode-height" class="form-control form-control-sm" value="30" min="5" max="100">
+        <input type="number" id="barcode-height" class="form-control form-control-sm" value="30" min="5" max="300">
       </div>
 
       <div class="col-6 col-md-2">
         <label for="barcode-width" class="form-label">Largura código (mm)</label>
-        <input type="number" id="barcode-width" class="form-control form-control-sm" value="30" min="5" max="29">
+        <input type="number" id="barcode-width" class="form-control form-control-sm" value="30" min="5" max="30">
       </div>
 
       <div class="col-6 col-md-3">
@@ -72,7 +72,7 @@
 
       <div class="col-6 col-md-3">
         <label for="font-size" class="form-label">Tamanho do texto (pt)</label>
-        <input type="number" id="font-size" class="form-control form-control-sm" value="85" min="6" max="45">
+        <input type="number" id="font-size" class="form-control form-control-sm" value="85" min="6" max="200">
       </div>
 
       <div class="col-6 col-md-3">
@@ -85,12 +85,23 @@
 
       <div class="col-6 col-md-3">
         <label for="label-width-mm" class="form-label">Largura do quadrado (mm)</label>
-        <input type="number" id="label-width-mm" class="form-control form-control-sm" value="42" min="10" max="100">
+        <input type="number" id="label-width-mm" class="form-control form-control-sm" value="39" min="10" max="300">
       </div>
 
       <div class="col-6 col-md-3">
         <label for="label-height-mm" class="form-label">Altura do quadrado (mm)</label>
-        <input type="number" id="label-height-mm" class="form-control form-control-sm" value="40" min="10" max="100">
+        <input type="number" id="label-height-mm" class="form-control form-control-sm" value="40" min="10" max="300">
+      </div>
+
+      <div class="col-6 col-md-3">
+        <label for="pdf-format" class="form-label">Formato do PDF</label>
+        <select id="pdf-format" class="form-select form-select-sm">
+          <option value="A4" selected>A4 (210 x 297 mm)</option>
+          <option value="A3">A3 (297 x 420 mm)</option>
+          <option value="SUPER_A3">Super A3 (330 x 440 mm)</option>
+          <option value="A2">A2 (420 x 594 mm)</option>
+          <option value="A1">A1 (594 x 841 mm)</option>
+        </select>
       </div>
 
       <div class="col-12 col-md-5">
@@ -110,7 +121,7 @@
           Pré-visualizar
         </button>
         <button type="button" id="generate-pdf" class="btn btn-success btn-sm px-4">
-          Gerar PDF A4
+          Gerar PDF
         </button>
       </div>
     </form>
